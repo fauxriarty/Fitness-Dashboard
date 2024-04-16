@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
+/* Resets */
+body, html {
+  height: 100%;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Background Image */
+body {
+  background: url('./background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow-x: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Navbar */
+.navbar {
+  padding: 1rem 2rem;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 1rem;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Jumbotron text color */
+.container .jumbotron, 
+.container .jumbotron h1, 
+.container .jumbotron p {
+  color: #fff; /* Ensuring that all text within jumbotron is white */
 }
 
-.App-link {
-  color: #61dafb;
+/* Button styles */
+.btn-primary {
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
+  font-size: 1.2rem; /* Slightly larger text for the button */
+  padding: 0.5rem 1.5rem; /* Larger padding for a bigger button */
+  margin-top: 4rem; /* Space from the text above */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-primary:hover {
+  background-color: #fff;
+  border-color: #000;
+  color: #2c2a2a;
+}
+
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.container .row .col h1,
+.container .row .col p {
+  color: #fff !important; 
 }
