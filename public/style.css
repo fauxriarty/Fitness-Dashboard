@@ -1,0 +1,366 @@
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #d32f2f;
+    --background-color: #f8f8f8;
+    --text-color: #333;
+    --secondary-color: #f78009;
+    --dark-bg: #121212; 
+    --dark-text: #e0e0e0;
+    --dark-secondary-bg: #333333;
+    --dark-accent: #424242;
+    --dark-header-text: #fff; 
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 2em auto;
+    max-width: 800px;
+    padding: 2em;   
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#about h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 0.5em;
+}
+
+#about p {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+}
+#about p,
+#contact form,
+.project-card p {
+    line-height: 1.6; 
+    color: var(--text-color); 
+}
+
+#about figure {
+    padding: 2em;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#about img {
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+}
+
+#about figcaption {
+    font-style: italic;
+    color: var(--text-color);
+    margin-top: 0.5em;
+}
+
+nav {
+    background-color: #f0f0f0;
+    overflow: hidden;
+}
+
+nav ul {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+nav ul li:hover ul {
+    display: grid;
+}
+
+nav ul ul {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0;
+}
+
+nav ul ul li {
+    display: block;
+}
+
+#skills ul {
+    list-style: none;
+    padding: 0;
+}
+
+#skills li {
+    background: url('https://cdn.pixabay.com/photo/2021/05/26/07/48/arrow-6284439_1280.png') no-repeat left center;
+    padding-left: 60px;
+    background-size: 40px;
+    margin-bottom: 10px;
+    line-height: 20px;
+}
+
+.section {
+    margin: 2em;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.project-card {
+    margin: 1em;
+    padding: 1em;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.repo-link {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+    text-decoration: none;
+}
+
+.project-card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-20px);
+}
+
+.project-card:hover .repo-link {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+    }
+
+    nav ul ul {
+        position: static;
+    }
+}
+
+#contact {
+    margin: 2em;
+    padding: 1em;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#contact form {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr;
+}
+
+#contact label,
+#contact input,
+#contact textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+#contact input:hover,
+#contact textarea:hover {
+  background-color: #e8e8e8; 
+  color: #333; 
+}
+
+input[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    margin-top: 20px;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+input[type="submit"]:hover {
+    background-color: #a02828;
+}
+
+aside {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1em;
+    border-radius: 80%;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transform: rotate(-15deg);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease, transform 0.3s ease;
+    clip-path: circle(50% at 50% 50%);
+    justify-content: center;
+}
+
+aside * {
+    display: none;
+    transition: transform 0.6s ease;
+}
+
+aside h3 {
+    display: block;
+    margin: 0;
+    transform: scale(1);
+}
+
+aside:hover {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    transform: rotate(0deg);
+    background-color: rgba(211, 47, 47, 0.9);
+}
+
+aside:hover h3 {
+    transform: translateX(-300px);
+}
+
+aside:hover * {
+    display: block;
+    justify-content: center;
+    transform: translateX(-35px);
+}
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode .repo-link,
+body.dark-mode input[type="submit"] {
+    background-color: var(--dark-accent);
+    color: var(--dark-text);
+}
+
+body.dark-mode #about,
+body.dark-mode .section,
+body.dark-mode #contact {
+    background-color: var(--dark-secondary-bg); 
+    color: var(--dark-text); 
+    box-shadow: 0 4px 8px var(--dark-shadow);
+}
+
+body.dark-mode #about h2,
+body.dark-mode #about figcaption,
+body.dark-mode nav ul li a,
+body.dark-mode .project-card h3 {
+    color: var(--dark-text);
+}
+
+body.dark-mode #contact label {
+    color: var(--dark-text);
+}
+
+body.dark-mode #contact input,
+body.dark-mode #contact textarea {
+    background-color: var(--dark-secondary-bg);
+    color: var(--dark-text);
+    border: 1px solid var(--dark-accent); 
+}
+
+body.dark-mode a:hover,
+body.dark-mode input[type="submit"]:hover,
+body.dark-mode .repo-link:hover,
+body.dark-mode #dark-mode-toggle:hover {
+    background-color: var(--secondary-color);
+    color: var(--dark-text); 
+    transition: background-color 0.3s, color 0.3s; 
+}
+
+nav ul li a:hover,
+input[type="submit"]:hover,
+.repo-link:hover,
+#dark-mode-toggle:hover {
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+body.dark-mode-transition * {
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode p,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode nav ul li a,
+body.dark-mode .repo-link,
+body.dark-mode input[type="submit"],
+body.dark-mode #dark-mode-toggle,
+body.dark-mode #about figcaption {
+    color: var(--dark-header-text);
+}
+
+
+#dark-mode-toggle {
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 2000; 
+    transition: background-color 0.3s, color 0.3s;
+
+}
