@@ -66,3 +66,46 @@ body {
 .container .row .col p {
   color: #fff !important; 
 }
+/* 
+.slide-fade-enter {
+  transform: translateX(100%);
+  opacity: 0.01;
+}
+
+.slide-fade-enter.slide-fade-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-fade-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-fade-exit.slide-fade-exit-active {
+  transform: translateX(100%);
+  opacity: 0.01;
+}
+
+.slide-fade-enter.slide-fade-enter-active,
+.slide-fade-exit.slide-fade-exit-active {
+  transition: all 500ms ease-in;
+} */
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 800ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 800ms;
+}

@@ -9,8 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import Home from './components/Home';
 import './App.css';
-
-
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 function App() {
   return (
@@ -19,13 +18,19 @@ function App() {
       <Container>
         <Row className="justify-content-md-center">
           <Col md={8}>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/activity" component={ActivityTracker} />
-              <Route path="/diet" component={DietLog} />
-              <Route path="/goals" component={GoalSetting} />
-              <Route path="/profile" component={UserProfile} />           
-            </Switch>
+            <Route render={({ location }) => (
+              <TransitionGroup>
+                <CSSTransition key={location.key} timeout={800} classNames="fade">
+                  <Switch location={location}>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/activity" component={ActivityTracker} />
+                    <Route path="/diet" component={DietLog} />
+                    <Route path="/goals" component={GoalSetting} />
+                    <Route path="/profile" component={UserProfile} />
+                  </Switch>
+                </CSSTransition>
+              </TransitionGroup>
+            )} />
           </Col>
         </Row>
       </Container>
