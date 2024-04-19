@@ -1,26 +1,80 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Card, Form, Button, ListGroup } from 'react-bootstrap';
+import { Pie } from 'react-chartjs-2';
 
 function DietLog() {
     const [meal, setMeal] = useState('');
     const [calories, setCalories] = useState('');
     const [mealType, setMealType] = useState('');
     const [mealTime, setMealTime] = useState('');
-    const [date, setDate] = useState('');
     const [logs, setLogs] = useState([]);
+    const [dietAdvice, setDietAdvice] = useState('');
+    const [chartData, setChartData] = useState({
+        labels: [],
+        datasets: [{
+            label: 'Calorie Distribution',
+            data: [],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    });
+
+    useEffect(() => {
+        const caloriesByType = logs.reduce((acc, log) => {
+            acc[log.mealType] = (acc[log.mealType] || 0) + parseInt(log.calories, 10);
+            return acc;
+        }, {});
+
+        const sortedMealTypes = Object.keys(caloriesByType).sort();
+        const sortedCalories = sortedMealTypes.map(type => caloriesByType[type]);
+
+        setChartData({
+            ...chartData,
+            labels: sortedMealTypes,
+            datasets: [{
+                ...chartData.datasets[0],
+                data: sortedCalories
+            }]
+        });
+
+        const totalCalories = sortedCalories.reduce((acc, val) => acc + val, 0);
+        if (totalCalories > 2000) {
+            setDietAdvice("Your calorie intake is above the recommended daily amount. Consider revising your diet to include lower-calorie meals.");
+        } else if (totalCalories < 1200) {
+            setDietAdvice("Your calorie intake is below the recommended daily amount. It's important to consume enough calories for a balanced diet.");
+        } else {
+            setDietAdvice("Your calorie distribution is within a healthy range. Keep up the good work!");
+        }
+
+    }, [logs, chartData]);
 
     const logMeal = () => {
-        if (!meal || !calories || !mealType || !mealTime || !date) {
+        if (!meal || !calories || !mealType || !mealTime) {
             alert('Please fill in all fields.');
             return;
         }
-        const newLog = { meal, calories, mealType, mealTime, date, id: logs.length + 1 };
+        const newLog = { meal, calories, mealType, mealTime, id: logs.length + 1 };
         setLogs([...logs, newLog]);
         setMeal('');
         setCalories('');
         setMealType('');
         setMealTime('');
-        setDate('');
     };
 
     const deleteLog = (id) => {
@@ -83,15 +137,7 @@ function DietLog() {
                                 <option value="Night">Night</option>
                             </Form.Control>
                         </Form.Group>
-
-                        <Form.Group className="mb-5" controlId="formDate">
-                            <Form.Label>Date</Form.Label>
-                            <Form.Control
-                                type="date"
-                                value={date}
-                                onChange={e => setDate(e.target.value)}
-                            />
-                        </Form.Group>
+  
 
                         <Button variant="dark" className="mb-2" onClick={logMeal}>Log Meal</Button>
                     </Form>
@@ -109,6 +155,15 @@ function DietLog() {
                             </ListGroup.Item>
                         ))}
                     </ListGroup>
+                </Card.Body>
+            </Card>
+           
+
+            <Card className="container mt-4 p-4">
+                <Card.Body>
+                    <Card.Title>Calorie Distribution</Card.Title>
+                    <Pie data={chartData} />
+                    <p className="mt-3">{dietAdvice}</p>
                 </Card.Body>
             </Card>
         </div>

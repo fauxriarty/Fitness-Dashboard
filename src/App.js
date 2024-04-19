@@ -18,7 +18,7 @@ function App() {
       <Container>
         <Row className="justify-content-md-center">
           <Col md={8}>
-            <Route render={({ location }) => (
+            <Route render={({ location   }) => (
               <TransitionGroup>
                 <CSSTransition key={location.key} timeout={800} classNames="fade">
                   <Switch location={location}>
